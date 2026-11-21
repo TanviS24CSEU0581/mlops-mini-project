@@ -1,0 +1,27 @@
+paths:
+  train: data/raw/train.csv
+  later: data/raw/later.csv
+  holdout: data/raw/holdout_features.csv
+  model_out: models/model.joblib
+
+target: gb_per_day
+
+features:
+  numeric: [age, screen_hours, apps_installed, plan_gb_limit, video_minutes, wifi_hours]
+  categorical: [phone_tier, circle]
+
+mlflow:
+  tracking_uri: sqlite:///mlflow.db
+  experiment_name: mp114-mobile-data
+  registered_model_name: mp114-data-model
+
+runs:
+  - name: ridge
+    model: ridge
+    settings: {alpha: 1.0}
+  - name: random_forest
+    model: random_forest
+    settings: {n_estimators: 100, max_depth: 8, random_state: 42}
+  - name: gradient_boosting
+    model: gradient_boosting
+    settings: {n_estimators: 200, learning_rate: 0.05, max_depth: 3, random_state: 42}
