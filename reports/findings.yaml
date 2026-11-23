@@ -39,7 +39,7 @@ data_issues:
 
 tracking:
   experiment_name: mp114-mobile-data
-  best_run_id: 280ab8e6ce154d6e94d1ebc651bba6f9
+  best_run_id: b8b143c9c77e4fa7926b503b5634ed35
   registered_model_name: mp114-data-model
   champion_version: 1
 
