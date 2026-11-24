@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mp114-api
+  labels:
+    app: mp114-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mp114-api
+  template:
+    metadata:
+      labels:
+        app: mp114-api
+    spec:
+      containers:
+      - name: mp114-api
+        image: mp114-api:1.0
+        ports:
+        - containerPort: 8000
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 15
+          periodSeconds: 10
